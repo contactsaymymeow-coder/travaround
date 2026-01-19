@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Travaround Tours and Travels</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .contact-hero {
+            padding: 150px 0 80px;
+            background: var(--light-cream);
+            text-align: center;
+        }
+
+        .contact-info-card {
+            background: #fff;
+            padding: 40px;
+            height: 100%;
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-control {
+            border-radius: 0;
+            padding: 15px;
+            border-color: #eee;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-olive);
+            box-shadow: none;
+        }
+
+        .whatsapp-large-btn {
+            background-color: #25D366;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .whatsapp-large-btn:hover {
+            background-color: #128C7E;
+            color: #fff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-cream">
+
+    <!-- Custom Top Bar -->
+    <div class="top-bar d-none d-lg-block">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <span class="me-4"><i class="fa-solid fa-envelope me-2 text-gold"></i>
+                        info@travaroundtours.com</span>
+                    <span class="me-4"><i class="fa-solid fa-location-dot me-2 text-gold"></i> Calicut | Kochi</span>
+                </div>
+                <div class="col-md-4 text-end">
+                    <span><i class="fa-solid fa-phone me-2 text-gold"></i>+91 9895 436 223</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo/sj.png" alt="Travaround" class="logo-img">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#reviews">Reviews</a></li>
+                    <li class="nav-item ms-lg-4"><a class="btn btn-outline-dark rounded-0 px-4 py-2"
+                            href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="contact-hero">
+        <div class="container">
+            <span class="hero-tagline text-dark opacity-50 d-block" data-aos="fade-up">Get in Touch</span>
+            <h1 class="serif" data-aos="fade-up" data-aos-delay="100">Contact Us</h1>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Contact Info -->
+                <div class="col-lg-4">
+                    <div class="row g-4">
+                        <div class="col-12" data-aos="fade-up">
+                            <div class="contact-info-card">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="info-icon me-3"><i class="fa-solid fa-phone"></i></div>
+                                    <h4 class="serif mb-0">Call Us</h4>
+                                </div>
+                                <p class="text-muted mb-0">+91 9747 443 223</p>
+                                <p class="text-muted mb-0">+91 9895 412 502</p>
+                            </div>
+                        </div>
+                        <div class="col-12" data-aos="fade-up" data-aos-delay="100">
+                            <div class="contact-info-card">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="info-icon me-3"><i class="fa-solid fa-envelope"></i></div>
+                                    <h4 class="serif mb-0">Email Us</h4>
+                                </div>
+                                <p class="text-muted mb-0">info@travaroundtours.com</p>
+                            </div>
+                        </div>
+                        <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                            <div class="contact-info-card">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="info-icon me-3"><i class="fa-solid fa-location-dot"></i></div>
+                                    <h4 class="serif mb-0">Visit Us</h4>
+                                </div>
+                                <p class="text-muted mb-0">Calicut | Kochi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white p-5 shadow-sm">
+                        <h3 class="serif mb-4 text-center">Send Us a Message</h3>
+                        <form id="contact-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Email Address" required>
+                                </div>
+                            </div>
+                            <input type="tel" class="form-control" placeholder="Mobile">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+
+                            <div class="d-grid gap-3">
+                                <!-- <button type="submit" class="btn btn-dark rounded-0 py-3">Submit Message</button> -->
+                                <div class="text-center text-muted">contact us instantly via</div>
+                                <a href="https://wa.me/919747443223?text=Hi%20Travaround,%20I'm%20interested%20in%20your%20services."
+                                    class="whatsapp-large-btn justify-content-center" target="_blank">
+                                    <i class="fab fa-whatsapp me-2 fs-4"></i> Chat on WhatsApp
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer id="contact" class="footer-white-premium">
+        <!-- Luxury Watermark CSS Drawings -->
+        <div class="footer-drawings">
+            <div class="logo-watermark">
+                <div class="css-globe">
+                    <div class="css-globe-inner"></div>
+                    <div class="css-continents">
+                        <div class="continent cont-1"></div>
+                        <div class="continent cont-2"></div>
+                        <div class="continent cont-3"></div>
+                    </div>
+                </div>
+                <div class="css-plane">
+                    <div class="css-plane-wing"></div>
+                </div>
+                <div class="path-connection path-1"></div>
+                <div class="path-connection path-2"></div>
+            </div>
+            <div class="drawing-circle c-1">
+                <div class="c-1-inner"></div>
+                <div class="c-1-dots"></div>
+            </div>
+            <div class="drawing-circle c-2">
+                <div class="c-2-inner"></div>
+            </div>
+            <div class="drawing-circle c-3"></div>
+            <div class="footer-node n-1"></div>
+            <div class="footer-node n-2"></div>
+            <div class="footer-node n-3"></div>
+            <div class="footer-node n-4"></div>
+            <div class="footer-node n-5"></div>
+            <div class="footer-node n-6"></div>
+            <div class="footer-node n-7"></div>
+            <div class="footer-node n-8"></div>
+            <div class="footer-node n-9"></div>
+            <div class="decorative-line l-v1"></div>
+            <div class="decorative-line l-v2"></div>
+            <div class="decorative-line l-v3"></div>
+            <div class="decorative-line l-v4"></div>
+            <div class="decorative-line l-h1"></div>
+            <div class="decorative-line l-h2"></div>
+            <div class="decorative-line l-h3"></div>
+            <div class="compass-marking cm-1"></div>
+            <div class="compass-marking cm-2"></div>
+            <div class="compass-marking cm-3"></div>
+            <div class="compass-marking cm-4"></div>
+        </div>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3">
+                    <div class="mb-4">
+                        <img src="images/logo/sj.png" alt="Travaround" class="footer-logo-img">
+                    </div>
+                    <p class="footer-text mb-4">Crafting luxurious journeys for the discerning traveler since 2020.</p>
+                    <div class="tagline-style text-start mb-4" style="color: var(--primary-gold); font-size: 1.5rem;">
+                        Your world. Your journey. Your Travaround.</div>
+                    <div class="d-flex">
+                        <a href="#" class="social-circle fb"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle ig"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle li"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/919747443223" class="social-circle wa"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="serif mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html#home" class="footer-link">Home</a></li>
+                        <li><a href="index.html#services" class="footer-link">Services</a></li>
+                        <li><a href="gallery.html" class="footer-link">Gallery</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="serif mb-4">Connect</h5>
+                    <p class="footer-text mb-3"><i class="fa-solid fa-location-dot me-3 text-gold"></i> Calicut | Kochi
+                    </p>
+                    <p class="footer-text mb-2"><i class="fa-solid fa-phone me-3 text-gold"></i> +91 9895 436 223</p>
+                    <p class="footer-text mb-3"><i class="fa-solid fa-phone me-3 text-gold"></i> +91 9895 412 502</p>
+                    <p class="footer-text"><i class="fa-solid fa-envelope me-3 text-gold"></i> info@travaroundtours.com
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="serif mb-4">Explore</h5>
+                    <p class="footer-text">
+                        Discovery is the essence of existence, and at Travaround, we believe every journey should be as
+                        unique as the traveler who embarks upon it. Our dedicated team specializes in uncovering the
+                        world's most hidden treasures, offering you exclusive access to destinations that remain
+                        untouched by the masses.
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    &copy; 2026 TRAVAROUND TOURS AND TRAVELS. ALL RIGHTS RESERVED. <br>
+                    <span class="credits-highlight">DESIGNED FOR DISCERNING TRAVELERS</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
