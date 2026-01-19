@@ -6,23 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Signature Typing Loader Logic
     const loader = document.getElementById('loader-wrapper');
     const typingText = document.getElementById('typing-text');
-    const brandName = "TRAVAROUND";
+    const texts = ["TRAVAROUND", "Travel the world with Travaround"];
+    let textIndex = 0;
     let charIndex = 0;
 
     if (loader && typingText) {
         function typeEffect() {
-            if (charIndex < brandName.length) {
-                typingText.textContent += brandName.charAt(charIndex);
+            if (charIndex < texts[textIndex].length) {
+                typingText.textContent += texts[textIndex].charAt(charIndex);
                 charIndex++;
-                setTimeout(typeEffect, 120); // Typing speed
+                setTimeout(typeEffect, 80); // Typing speed
             } else {
-                // Wait 1s after typing finishes, then fade out
+                // Wait after typing finishes
                 setTimeout(() => {
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 1000);
-                }, 1000);
+                    if (textIndex < texts.length - 1) {
+                        // Erase and move to next text
+                        eraseEffect();
+                    } else {
+                        // Last text - fade out loader
+                        setTimeout(() => {
+                            loader.style.opacity = '0';
+                            setTimeout(() => {
+                                loader.style.display = 'none';
+                            }, 1000);
+                        }, 1000);
+                    }
+                }, 1500);
+            }
+        }
+
+        function eraseEffect() {
+            if (charIndex > 0) {
+                typingText.textContent = texts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseEffect, 40); // Erase speed
+            } else {
+                textIndex++;
+                setTimeout(typeEffect, 200);
             }
         }
 

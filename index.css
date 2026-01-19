@@ -91,16 +91,25 @@ h4,
     gap: 2px;
     width: 100%;
     /* Power centering */
+    padding: 0 20px;
+    /* Prevent text overflow on mobile */
 }
 
 #typing-text {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.2rem, 4vw, 2.5rem);
-    /* Refined fluid text */
+    font-size: clamp(1rem, 3.5vw, 2.5rem);
+    /* Better mobile scaling */
     color: var(--primary-olive);
     /* Changed from gold for white BG */
     font-weight: 700;
-    letter-spacing: 4px;
+    letter-spacing: clamp(1px, 0.5vw, 4px);
+    /* Responsive letter spacing */
+    text-align: center;
+    /* Center text */
+    max-width: 90%;
+    /* Prevent overflow */
+    word-wrap: break-word;
+    /* Break long words if needed */
 }
 
 .cursor {
@@ -648,6 +657,13 @@ h4,
     animation: float-y 7s ease-in-out infinite 0.5s;
 }
 
+.card-5 {
+    top: -20px;
+    left: 20px;
+    transform: rotate(-8deg);
+    animation: float-y 6.5s ease-in-out infinite 0.3s;
+}
+
 .floating-image-card:hover {
     transform: scale(1.1) rotate(0deg);
     z-index: 50;
@@ -759,6 +775,200 @@ h4,
     transform: translateY(0);
     opacity: 1;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Service Icon Cards --- */
+.service-icon-card {
+    background: var(--pure-white);
+    padding: 40px 35px;
+    border: 1px solid #f0f0f0;
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-icon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-olive), var(--primary-gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.service-icon-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-icon-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-gold);
+}
+
+.service-icon-card.tall-card {
+    padding: 50px 40px;
+    min-height: 400px;
+    justify-content: center;
+}
+
+.service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--light-cream), #fff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    position: relative;
+    transition: var(--transition);
+    border: 2px solid var(--primary-gold);
+}
+
+.service-icon-wrapper.large {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+}
+
+.service-icon-wrapper i {
+    font-size: 2rem;
+    color: var(--primary-olive);
+    transition: var(--transition);
+}
+
+.service-icon-wrapper.large i {
+    font-size: 2.5rem;
+}
+
+.service-icon-card:hover .service-icon-wrapper {
+    background: linear-gradient(135deg, var(--primary-olive), var(--primary-gold));
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+}
+
+.service-icon-card:hover .service-icon-wrapper i {
+    color: var(--pure-white);
+    transform: scale(1.1);
+}
+
+.service-icon-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary-olive);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.service-icon-card p {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* Travel Ticketing Multi-Option Card */
+.service-icon-header {
+    width: 100%;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.service-icon-header h3 {
+    font-size: 1.6rem;
+    color: var(--primary-olive);
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.service-icon-header p {
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.service-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.service-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    border-radius: 8px;
+    transition: var(--transition);
+    background: var(--light-cream);
+}
+
+.service-option:hover {
+    background: var(--pure-white);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.service-option .service-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.service-option .service-icon-wrapper i {
+    font-size: 1.5rem;
+}
+
+.service-option h4 {
+    font-size: 1.1rem;
+    color: var(--primary-olive);
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+}
+
+.service-option p {
+    font-size: 0.8rem;
+    color: var(--muted-text);
+    margin-bottom: 0;
+}
+
+.service-option:hover .service-icon-wrapper {
+    background: linear-gradient(135deg, var(--primary-olive), var(--primary-gold));
+    transform: scale(1.15);
+}
+
+.service-option:hover .service-icon-wrapper i {
+    color: var(--pure-white);
+}
+
+/* Responsive adjustments for service cards */
+@media (max-width: 768px) {
+    .service-options-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .service-icon-card {
+        padding: 30px 25px;
+    }
+
+    .service-icon-card.tall-card {
+        min-height: auto;
+        padding: 40px 30px;
+    }
 }
 
 /* --- Reviews Section --- */
