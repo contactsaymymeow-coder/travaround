@@ -2289,11 +2289,27 @@ h4,
 
 /* --- Updated Tagline & Reviews BG --- */
 .hero-tagline-v3 {
-    font-size: 2.5rem !important;
-    font-family: 'Great Vibes', cursive !important;
+    font-size: 1.25rem !important;
+    font-family: 'Outfit', sans-serif !important;
     color: var(--primary-olive) !important;
-    text-transform: none !important;
-    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.hero-tagline-v3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-gold);
 }
 
 #reviews {

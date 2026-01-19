@@ -237,4 +237,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 7. Contact Form WhatsApp Redirection
+    const whatsappBtn = document.getElementById('whatsapp-submit');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', () => {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const mobile = document.getElementById('contact-mobile').value;
+            const message = document.getElementById('contact-message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, and Message).');
+                return;
+            }
+
+            const whatsappNumber = "919747443223";
+            const text = `Hi Travaround, I'm interested in your services.\n\n` +
+                `*Name:* ${name}\n` +
+                `*Email:* ${email}\n` +
+                `*Mobile:* ${mobile || 'Not provided'}\n` +
+                `*Message:* ${message}`;
+
+            const encodedText = encodeURIComponent(text);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappURL, '_blank');
+        });
+    }
 });
