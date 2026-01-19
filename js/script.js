@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Signature Typing Loader Logic
     const loader = document.getElementById('loader-wrapper');
     const typingText = document.getElementById('typing-text');
-    const texts = ["TRAVAROUND", "Travel the world with Travaround"];
+    const texts = ["TRAVEL THE WORLD WITH TRAVAROUND"];
     let textIndex = 0;
     let charIndex = 0;
 
