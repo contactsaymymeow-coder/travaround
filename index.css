@@ -23,8 +23,29 @@ body {
     color: var(--dark-text);
     background-color: var(--pure-white);
     line-height: 1.6;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+/* NAV LINK COLORS – FIX ACTIVE STATE */
+.navbar .nav-link {
+    color: var(--dark-text) !important;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-gold) !important;
+}
+
+.navbar .nav-link.active {
+    color: var(--primary-gold) !important;
+    font-weight: 600;
+}
+
 
 h1,
 h2,
@@ -65,6 +86,14 @@ h4,
     align-items: center;
     transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    pointer-events: auto;
+    /* Ensure it catches clicks while visible */
+}
+
+#loader-wrapper.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    /* Crucial: stop blocking clicks while fading */
 }
 
 .loader-logo {
@@ -140,6 +169,8 @@ h4,
     color: rgba(255, 255, 255, 0.9);
 }
 
+
+
 .top-bar a {
     color: inherit;
     text-decoration: none;
@@ -159,9 +190,69 @@ h4,
     border-bottom: 1px solid transparent;
     position: fixed;
     width: 100%;
-    top: 40px;
+    top: 0;
     /* Aligns with Top Bar height */
     z-index: 1000;
+}
+
+@media (min-width: 992px) {
+    .navbar {
+        top: 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        background-color: #ffffff;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        padding: 5px 0 !important;
+        /* Smaller padding on mobile */
+    }
+
+    .navbar-brand {
+        max-width: 70%;
+        /* Prevent logo from taking too much space */
+    }
+
+    .logo-img {
+        height: 50px !important;
+        /* Smaller logo on mobile to fit menu icon */
+    }
+
+    .navbar-toggler {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        border-radius: 5px;
+        padding: 5px;
+        z-index: 1050;
+        display: flex !important;
+        /* Force display on mobile */
+        align-items: center;
+        justify-content: center;
+        opacity: 1 !important;
+        width: 45px;
+        /* Explicit width */
+        height: 40px;
+        /* Explicit height */
+    }
+
+    /* Extremely specific selector to override Bootstrap's theme defaults */
+    .navbar-dark .navbar-toggler-icon,
+    .navbar-light .navbar-toggler-icon,
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        width: 24px;
+        height: 24px;
+    }
+
+    .navbar-collapse {
+        background-color: var(--light-cream);
+        padding: 20px;
+        margin-top: 10px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
 }
 
 .navbar.scrolled {
@@ -2690,32 +2781,39 @@ h4,
 
 }
 
-/* --- Gallery Card Styles --- */
+/* --- Gallery Card Styles (Premium Update) --- */
 .gallery-card {
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
+    background: #1a1a1a;
+    height: 100%;
 }
 
 .gallery-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-card img {
     width: 100%;
-    height: 300px;
-    /* Fixed height for consistency */
+    height: 350px;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s ease;
+    transition: transform 0.8s ease;
+    opacity: 0.9;
+    border: 8px solid #fff;
+    /* White Frame */
+    box-sizing: border-box;
 }
 
 .gallery-card:hover img {
-    transform: scale(1.1);
+    transform: scale(1.12);
+    opacity: 0.6;
+    /* Darken image slightly to let text pop */
 }
 
 .gallery-overlay {
@@ -2723,22 +2821,599 @@ h4,
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    color: var(--pure-white);
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    height: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    opacity: 0.9;
+    transition: all 0.4s ease;
 }
 
 .gallery-overlay h4 {
-    font-size: 1.4rem;
-    margin-bottom: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--pure-white);
+    transform: translateY(10px);
+    transition: transform 0.4s ease, color 0.3s;
+    font-family: 'Playfair Display', serif;
+}
+
+.gallery-card:hover .gallery-overlay h4 {
+    transform: translateY(0);
     color: var(--primary-gold);
 }
 
 .gallery-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    transform: translateY(10px);
+    transition: transform 0.4s ease 0.1s, color 0.3s;
+    position: relative;
+    padding-left: 15px;
 }
+
+.gallery-subtitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 1px;
+    background: var(--primary-gold);
+    transition: width 0.3s ease;
+}
+
+.gallery-card:hover .gallery-subtitle {
+    transform: translateY(0);
+    color: var(--pure-white);
+}
+
+.gallery-card:hover .gallery-subtitle::before {
+    width: 25px;
+}
+
+/* --- Lightbox Styles --- */
+.lightbox {
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content-wrapper {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 90vh;
+    border: 10px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    padding: 10px;
+}
+
+.lightbox-close:hover {
+    color: var(--primary-gold);
+}
+
+@media (max-width: 768px) {
+    .lightbox-close {
+        top: -40px;
+        right: 0;
+    }
+}
+
+/* --- Beautiful Cards Section (About Page) --- */
+.about-card-section {
+    padding: 80px 0;
+    background: var(--light-cream);
+}
+
+.beautiful-card {
+    background: var(--pure-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.beautiful-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.beautiful-card-img {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.beautiful-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.beautiful-card:hover .beautiful-card-img img {
+    transform: scale(1.1);
+}
+
+.beautiful-card-content {
+    padding: 35px 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--pure-white);
+}
+
+.beautiful-card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--primary-olive);
+    margin-bottom: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.beautiful-card-icon {
+    color: var(--primary-gold);
+    font-size: 1.3rem;
+}
+
+.beautiful-card-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted-text);
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .beautiful-card-img {
+        height: 240px;
+    }
+
+    .beautiful-card-content {
+        padding: 30px 25px;
+    }
+
+    .beautiful-card-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .about-card-section {
+        padding: 60px 0;
+    }
+
+    /* Added narrow space from top as requested */
+    .beautiful-card {
+        padding-top: 10px;
+    }
+
+    .beautiful-card-img {
+        height: 280px;
+        /* Increased height */
+    }
+
+    .beautiful-card-content {
+        padding: 25px 20px;
+    }
+
+    .beautiful-card-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .beautiful-card-content p {
+        font-size: 0.95rem;
+    }
+}
+
+/* --- Floating WhatsApp Button --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float a:hover {
+    background: #128C7E;
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float i {
+    color: white;
+    font-size: 30px;
+}
+
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .whatsapp-float a {
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsapp-float i {
+        font-size: 24px;
+    }
+}
+
+/* --- Testimonials 3-Card Carousel --- */
+.testimonial-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    height: 100%;
+    /* Removed margin to increase width */
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid var(--primary-gold);
+    padding: 3px;
+    background: #fff;
+}
+
+.testimonial-quote {
+    font-size: 0.95rem;
+    color: var(--muted-text);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.rating-stars {
+    color: var(--primary-gold);
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+/* Custom Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    opacity: 0.8;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-olive);
+    border-radius: 50%;
+    background-size: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+/* Indicators */
+.carousel-indicators {
+    bottom: -50px;
+}
+
+.carousel-indicators button {
+    background-color: var(--primary-gold) !important;
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50%;
+    margin: 0 5px !important;
+}
+
+
+
+
+/* Custom Nav Responsive Css */
+
+
+/* =========================================================
+   FIX TOP BAR COLLAPSING ON MOBILE (BOOTSTRAP GRID RESTORE)
+   ========================================================= */
+@media (max-width: 991px) {
+
+    /* Force show */
+    .top-bar.d-none.d-lg-block {
+        display: block !important;
+        width: 100%;
+        background-color: var(--primary-olive);
+    }
+
+    /* Restore container */
+    .top-bar .container {
+        width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* Restore row behavior */
+    .top-bar .row {
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        min-height: 36px;
+        margin: 0;
+    }
+
+    /* Restore columns */
+    .top-bar .col-md-8,
+    .top-bar .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center !important;
+        padding: 2px 0;
+    }
+
+    /* Text visibility */
+    .top-bar span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        color: #fff;
+    }
+}
+
+/* =========================================================
+   FIX FIXED NAVBAR OFFSET
+   ========================================================= */
+@media (max-width: 991px) {
+    .navbar {
+        top: 36px;
+    }
+}
+
+/* --- My Code FIXED CUSTOM TOP BAR --- */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    /* ABOVE navbar */
+}
+
+
+/* =====================================
+   GLOBAL HEADER SPACING FIX
+   ===================================== */
+
+/* Desktop: top-bar (40px) + navbar (~80px) */
+@media (min-width: 992px) {
+    body {
+        padding-top: 50px;
+    }
+}
+
+/* Mobile: navbar only */
+@media (max-width: 991px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
+
+/* ================================
+   MOBILE FIX: SHOW NAVBAR BELOW TOP BAR
+   ================================ */
+@media (max-width: 991px) {
+    .navbar {
+        position: relative;
+        /* KEY FIX */
+        top: 0;
+        /* reset */
+        z-index: 1000;
+    }
+
+    body {
+        padding-top: 65px;
+        /* only top-bar height */
+    }
+}
+
+/* =========================================
+   MOBILE HERO GAP FIX
+   Reduce space below navbar
+   ========================================= */
+@media (max-width: 991px) {
+    .hero-premium-v3 {
+        padding-top: 30px;
+        /* was 160px */
+        padding-bottom: 60px;
+        min-height: auto;
+        /* prevent forced tall hero */
+    }
+
+    .hero-tagline-v3 {
+        margin-top: 0;
+        /* ensure no extra gap */
+    }
+}
+
+/* --- My Code FIXED CUSTOM TOP BAR --- */
+
+/* =========================================
+   GLOBAL FIXED NAV OFFSET (ALL PAGES)
+   ========================================= */
+
+@media (min-width: 992px) {
+
+    /* About Page: Push content down below fixed header */
+    .about-card-section {
+        margin-top: 100px;
+    }
+
+    /* Packages Page: Increase padding to clear navbar while keeping background */
+    .page-header {
+        padding-top: 200px !important;
+    }
+}
+
+
+/* bcbb */
+
+/* Top bar hide on scroll */
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+    transition: transform 0.4s ease;
+}
+
+.top-bar.hidden {
+    transform: translateY(-100%);
+}
+
+/* Mobile: top bar should scroll away */
+@media (max-width: 991px) {
+    .top-bar {
+        position: static;
+        transform: none !important;
+    }
+}
+@media (max-width: 991px) {
+    .navbar {
+        position: fixed;
+        top: 0 !important;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+}
+
+/* FIX: Remove white gap above navbar on packages page */
+.page-header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+.page-header {
+    position: relative;
+    top: 0;
+}
+
+
+/* FIX: Packages page mobile navbar ordering */
+@media (max-width: 991px) {
+    body {
+        padding-top: 0 !important;
+    }
+
+    .navbar {
+        top: 0 !important;
+        position: fixed !important;
+    }
+
+    .top-bar {
+        position: relative !important;
+        top: auto !important;
+    }
+}
+ 
+
+
+
+
+

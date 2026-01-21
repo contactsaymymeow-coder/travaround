@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         // Last text - fade out loader
                         setTimeout(() => {
-                            loader.style.opacity = '0';
+                            loader.classList.add('fade-out'); // Adds opacity: 0 and pointer-events: none
                             setTimeout(() => {
                                 loader.style.display = 'none';
                             }, 1000);
@@ -51,14 +51,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Sophisticated Navbar Scroll Effect
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+const navbar = document.querySelector('.navbar');
+const topBar = document.querySelector('.top-bar');
+
+function updateNavbar() {
+    const isMobile = window.innerWidth < 992;
+
+    if (window.scrollY > 50) {
+        // SCROLLED STATE
+        navbar.classList.add('scrolled');
+        navbar.classList.add('navbar-light');
+        navbar.classList.remove('navbar-dark');
+
+        if (topBar && !isMobile) {
+            topBar.style.transform = 'translateY(-100%)';
+            navbar.style.top = '0';
         }
-    });
+    } else {
+        // TOP STATE
+        navbar.classList.remove('scrolled');
+
+        if (!isMobile) {
+            navbar.classList.add('navbar-dark');
+            navbar.classList.remove('navbar-light');
+            navbar.style.top = '40px';
+
+            if (topBar) {
+                topBar.style.transform = 'translateY(0)';
+            }
+        } else {
+            // MOBILE
+            navbar.classList.add('navbar-light');
+            navbar.classList.remove('navbar-dark');
+            navbar.style.top = '0';
+        }
+    }
+}
+
+// Run on load, scroll, resize
+window.addEventListener('scroll', updateNavbar);
+window.addEventListener('resize', updateNavbar);
+window.addEventListener('load', updateNavbar);
+
 
     // 3. AOS Initialisation
     if (typeof AOS !== 'undefined') {
@@ -195,45 +229,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Dynamic Reviews Logic
     const reviewsData = [
-        { name: "Sarah Johnson", role: "Verified Traveler", text: "Trav Around transformed our family vacation into a masterpiece of organization and luxury. The attention to detail was simply unparalleled.", img: "images/hero/hero.png" },
-        { name: "Michael Chen", role: "Business Professional", text: "From flight bookings to local transport, every step was seamless. They truly are the elite choice for high-end travel services.", img: "images/hero/hero.png" },
-        { name: "Emma Thompson", role: "Solo Traveler", text: "A truly magical experience. The itinerary was perfectly balanced between adventure and relaxation.", img: "images/hero/hero.png" },
-        { name: "David Wilson", role: "Family Trip", text: "Our kids had the time of their lives! The family-friendly resorts and activities were spot on.", img: "images/hero/hero.png" },
-        { name: "Anita Desai", role: "Luxury Seeker", text: "I have traveled with many agencies, but Travaround's service is in a league of its own. Five stars!", img: "images/hero/hero.png" },
-        { name: "James Anderson", role: "Adventure Lover", text: "The trekking package to Kashmir was breathtaking. Excellent guides and top-notch safety measures.", img: "images/hero/hero.png" },
-        { name: "Sophie Martin", role: "Honeymooner", text: "Our honeymoon in Maldives was like a dream. Thank you for making it so special and romantic.", img: "images/hero/hero.png" },
-        { name: "Rahul Verma", role: "Corporate Client", text: "Professional, efficient, and reliable. Travaround handles our business travel needs perfectly.", img: "images/hero/hero.png" },
-        { name: "Lisa Wong", role: "Explorer", text: "Found hidden gems in Thailand that I never would have discovered on my own. Highly recommended!", img: "images/hero/hero.png" },
-        { name: "Omar Farooq", role: "Pilgrim", text: "The Umrah package was well-organized and spiritually uplifting. JazakAllah Khair for the great service.", img: "images/hero/hero.png" },
-        { name: "Catherine Duke", role: "Art Enthusiast", text: "The cultural value of the Golden Triangle tour was immense. The guides were very knowledgeable.", img: "images/hero/hero.png" },
-        { name: "Robert Lewis", role: "Retired Couple", text: "We felt safe and well-cared for throughout our entire journey. A wonderful experience for seniors.", img: "images/hero/hero.png" }
+        { name: "Yusuf Murgha", role: "Verified Traveler", text: "Best and affordable tour packages. Shahid has good holiday ideas with good itinerary and content, contracts the services needed for the holiday, accommodation, transport, guides, resorts. Really had a good and stress-free memorable time.", img: "images/services/unnamed.png" },
+        { name: "Ranjith", role: "Verified Traveler", text: "We had a wonderful tour experience with Trav Around Tours, Our Kashmir trip was memorable. Quality hotel and food and Very friendly local Guide. Thank you Team Trav Around.", img: "images/services/unnamed2.jpeg" },
+        { name: "Shalima Rajath", role: "Verified Traveler", text: "They have brilliant deals and offers excellant service. Shahid is super efficient and quick on responses. Looking forward for more vaccays with you. Highly recommended.", img: "images/services/unnamed2.png" },
+        { name: "Vishnu Prasad", role: "Verified Traveler", text: "Good communication. Fast response. Affordable rates. And also explain all details about our needs", img: "images/services/unnamed3.png" },
+        { name: "Dr Tipu Sulthan", role: "Verified Traveler", text: "Kind, humble & innovative people. Always ready to help and ensure the best travel experience.", img: "images/services/unnamed4.png" },
+        { name: "Shahid Nisar", role: "Verified Traveler", text: "Amazing experience! Everything was perfect from start to finish. Highly recommended.", img: "images/services/unnamed4.png" },
+        { name: "v.p.v.shafi Shafi", role: "Verified Traveler", text: "Best and safe package. The team took care of everything we needed for a comfortable journey.", img: "images/services/unnamed4.png" },
+        { name: "Rahulpradeep", role: "Verified Traveler", text: "Good service. Very happy with the arrangements made by the team.", img: "images/services/unnamed4.png" },
+        { name: "Rajath O.M", role: "Verified Traveler", text: "Great service and friendly staff. Will definitely travel with them again.", img: "images/services/unnamed4.png" }
     ];
 
     function renderReviews() {
         const container = document.getElementById('reviews-container');
+        const indicatorsContainer = document.getElementById('review-indicators');
+
         if (!container) return;
 
         container.innerHTML = '';
-        reviewsData.forEach((review, index) => {
-            const activeClass = index === 0 ? 'active' : '';
-            const item = `
-                <div class="carousel-item ${activeClass}" data-bs-interval="4000">
-                    <div class="quote-icon mb-4"><i class="fas fa-quote-left"></i></div>
-                    <div class="rating-stars mb-3">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
+        if (indicatorsContainer) indicatorsContainer.innerHTML = '';
+
+        // Chunk functionality to group reviews by 3
+        const chunkSize = 3;
+        let slideIndex = 0;
+
+        for (let i = 0; i < reviewsData.length; i += chunkSize) {
+            const chunk = reviewsData.slice(i, i + chunkSize);
+            const activeClass = i === 0 ? 'active' : '';
+
+            // Generate HTML for the 3 (or fewer) cards in this slide
+            let cardsHtml = '';
+            chunk.forEach(review => {
+                cardsHtml += `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="testimonial-card h-100 mx-1">
+                            <img src="${review.img}" class="testimonial-img" alt="${review.name}">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">"${review.text}"</p>
+                            <h5 class="mb-1 serif">${review.name}</h5>
+                            <small class="text-muted">${review.role}</small>
+                        </div>
                     </div>
-                    <p class="review-quote">"${review.text}"</p>
-                    <img src="${review.img}" class="reviewer-img" alt="${review.name}">
-                    <h5 class="mb-1">${review.name}</h5>
-                    <small style="color: var(--primary-gold);">${review.role}</small>
+                `;
+            });
+
+            // Wrap cards in a row and carousel-item
+            // Modified to use g-0 and minimal margins for max width
+            const carouselItem = `
+                <div class="carousel-item ${activeClass}" data-bs-interval="5000">
+                    <div class="row g-0 justify-content-center">
+                        ${cardsHtml}
+                    </div>
                 </div>
             `;
-            container.innerHTML += item;
-        });
 
-        // Update Indicators (Optional, if you want dynamic indicators too)
-        // For now, removing static indicators or updating them via JS is best, but user didn't explicitly ask for indicators to be perfect, just 10 more testims.
+            container.innerHTML += carouselItem;
+
+            // Generate Indicator
+            if (indicatorsContainer) {
+                const indicatorActive = i === 0 ? 'class="active" aria-current="true"' : '';
+                indicatorsContainer.innerHTML += `
+                    <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="${slideIndex}" ${indicatorActive} aria-label="Slide ${slideIndex + 1}"></button>
+                `;
+                slideIndex++;
+            }
+        }
     }
 
     if (document.getElementById('reviews-container')) {
@@ -283,6 +345,53 @@ document.addEventListener('DOMContentLoaded', () => {
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
 
             window.open(whatsappURL, '_blank');
+        });
+    }
+
+    // 8. Gallery Lightbox Functionality
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryCards = document.querySelectorAll('.gallery-card');
+
+    if (lightbox && lightboxImg && galleryCards.length > 0) {
+        galleryCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const img = card.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+        };
+
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeLightbox();
+            });
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
         });
     }
 });
