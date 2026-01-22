@@ -107,20 +107,20 @@ window.addEventListener('load', updateNavbar);
     // 4. Packages Rendering Logic
     // Featured Data for Home Page
     const domesticFeatured = [
-        { title: "Kashmir: Heaven on Earth", date: "Daily Departures", duration: "4 Nights / 5 Days", tag: "Best Seller", img: "images/packages/k.png", price: "12,990/-" },
+        { title: "Kashmir: Heaven on Earth", date: "Daily Departures", duration: "4 Nights / 5 Days", tag: "Best Seller", img: "images/packages/kr.png", price: "12,990/-" },
         { title: "God's Own Country: Kerala", date: "Daily Departures", duration: "4 Nights / 5 Days", tag: "Nature", img: "images/packages/kerala.jpg", price: "12,490" },
         { title: "Golden Triangle: Delhi, Agra, Jaipur", date: "Daily Departures", duration: "4 Nights / 5 Days", tag: "Heritage", img: "images/packages/ag.png", price: "14,900" }
     ];
 
     const internationalFeatured = [
-        { title: "Mystic Egypt", date: "Fixed Departures", duration: "4 Nights / 5 Days", tag: "History", img: "images/packages/egypt.jpg", price: "45,000" },
+        { title: "Mystic Egypt", date: "Fixed Departures", duration: "4 Nights / 5 Days", tag: "History", img: "images/packages/egypt1.jpg", price: "45,000" },
         { title: "Amazing Thailand", date: "Daily Departures", duration: "3 Nights / 4 Days", tag: "Beach", img: "images/packages/thailand.jpg", price: "16,900" },
         { title: "Luxury Maldives", date: "Daily Departures", duration: "3 Nights / 4 Days", tag: "Honeymoon", img: "images/packages/Maldives.jpg", price: "59,900" }
     ];
 
     // Full Data for Packages Page
     const allDomesticPackages = [
-        { title: "Lakshadweep", desc: "Discover the Untouched Beauty of Lakshadweep", duration: "4 Days 3 Nights", price: "24,000", img: "images/packages/l.png" },
+        { title: "Lakshadweep", desc: "Discover the Untouched Beauty of Lakshadweep", duration: "4 Days 3 Nights", price: "24,000", img: "images/packages/lakh.jpg" },
         { title: "Kashmir", desc: "Embark on a mesmerizing journey to Kashmir", duration: "6 Days 5 Nights", price: "14,900", img: "images/packages/kr.png" },
         { title: "Delhi, Agra & Jaipur", desc: "India's famous Golden Triangle - Delhi, Agra, and Jaipur", duration: "5 Days 4 Nights", price: "14,900", img: "images/packages/ag.png" },
         { title: "Delhi & Manali", desc: "An unforgettable journey - Delhi and Manali package.", duration: "4 Days 5 Nights", price: "9,900", img: "images/packages/d.png" },
@@ -134,7 +134,7 @@ window.addEventListener('load', updateNavbar);
         { title: "Mauritius", desc: "Experience the Ultimate Fusion of Luxury and Nature's Beauty", duration: "5 Days 4 Nights", price: "63,900", img: "images/packages/ima.png" },
         { title: "Georgia", desc: "Discover the Hidden Gems: Exploring Georgia's Untouched Beauty", duration: "5 Days 4 Nights", price: "35,900", img: "images/packages/igo.png" },
         { title: "Thailand", desc: "Thailand's Hidden Gems Await Your Exploration", duration: "5 Days 4 Nights", price: "19,900", img: "images/packages/itha.png" },
-        { title: "Phuket & Krabi", desc: "Unveiling Phuket and Krabi- A Dual Delight for Adventurers", duration: "5 Days 4 Nights", price: "24,900", img: "images/packages/iph.png" },
+        { title: "Phuket & Krabi", desc: "Unveiling Phuket and Krabi- A Dual Delight for Adventurers", duration: "5 Days 4 Nights", price: "24,900", img: "images/packages/pul.jpg" },
         { title: "Sri Lanka", desc: "Sri Lanka: A Journey of Serenity and Spiritual Awakening.", duration: "4 Days 3 Nights", price: "28,900", img: "images/packages/isr.png" },
         { title: "Maldives", desc: "Unwind in Paradise- Embark on a Dreamy Journey to Maldives", duration: "4 Days 3 Nights", price: "23,900", img: "images/packages/ma.png" },
         { title: "Bali", desc: "Bali- A Dream Destination for Sun, Sand, and Serenity", duration: "5 Days 4 Nights", price: "22,900", img: "images/packages/iba.jpg" },
